@@ -152,6 +152,34 @@ namespace Contacts.Data
             return rowsAffected > 0;
         }
 
+        public static bool DeleteContact(int id)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = null;
+            SqlCommand command = null;
+            string query = @"DELETE FROM Contacts
+                            WHERE ContactID = @id";
+
+            try
+            {
+                connection = new SqlConnection(clsDataSettings.connectionString);
+                connection.Open();
+
+                command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception) { }
+            finally
+            {
+                if (connection != null && connection.State == System.Data.ConnectionState.Open)
+                    connection.Close();
+            }
+            
+            return rowsAffected > 0;
+        }
+
 
     }
 }

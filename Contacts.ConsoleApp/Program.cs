@@ -65,11 +65,20 @@ namespace Contacts.ConsoleApp
                 Console.WriteLine("update faild");
         }
 
+        static void TestDelete(int id)
+        {
+            if (clsContact.DeleteContact(id))
+                Console.WriteLine("Contact deleted successflly");
+            else
+                Console.WriteLine("Delete faild");
+        }
+
         static void Main(string[] args)
         {
             //TestFind(4);
             //TestAddNew();
-            TestUpdate(2);
+            //TestUpdate(2);
+            TestDelete(5);
         }
     }
 }

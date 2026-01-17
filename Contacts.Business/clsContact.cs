@@ -95,5 +95,10 @@ namespace Contacts.Business
 
             return false;
         }
+
+        public static bool DeleteContact(int id)
+        {
+            return Contacts.Data.clsContactData.DeleteContact(id);
+        }
     }
 }

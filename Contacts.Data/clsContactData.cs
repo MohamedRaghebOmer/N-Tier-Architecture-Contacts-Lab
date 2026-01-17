@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using Contacts.Data.Settings;
 
@@ -180,6 +181,37 @@ namespace Contacts.Data
             return rowsAffected > 0;
         }
 
+        public static DataTable GetAllContacts()
+        {
+            SqlConnection connection = null;
+            SqlDataReader reader = null;
+            DataTable dataTable = new DataTable();
+            string query = "SELECT * FROM Contacts;";
 
+            try
+            {
+                connection = new SqlConnection(clsDataSettings.connectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+                reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dataTable.Load(reader);
+                }
+            }
+            catch(Exception) { }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+                
+                if (connection!= null && connection.State ==  System.Data.ConnectionState.Open)
+                    connection.Close();
+            }
+
+            return dataTable;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Contacts.Business;
 
 namespace Contacts.ConsoleApp
@@ -73,12 +74,26 @@ namespace Contacts.ConsoleApp
                 Console.WriteLine("Delete faild");
         }
 
+        static void TestGetAllContacts()
+        {
+            DataTable dataTable = clsContact.GetAllContacts();
+
+            if (dataTable != null)
+            {
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Console.WriteLine($"{row["ContactID"]}. {row["FirstName"]} {row["LastName"]}");
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
             //TestFind(4);
             //TestAddNew();
             //TestUpdate(2);
-            TestDelete(5);
+            //TestDelete(5);
+            TestGetAllContacts();
         }
     }
 }

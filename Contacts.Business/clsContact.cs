@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Contacts.Data;
 
 namespace Contacts.Business
@@ -99,6 +100,11 @@ namespace Contacts.Business
         public static bool DeleteContact(int id)
         {
             return Contacts.Data.clsContactData.DeleteContact(id);
+        }
+
+        public static DataTable GetAllContacts()
+        {
+            return clsContactData.GetAllContacts();
         }
     }
 }

@@ -87,13 +87,22 @@ namespace Contacts.ConsoleApp
             }
         }
 
+        static void TestContactExist(int id)
+        {
+            if (clsContact.IsContactExist(id))
+                Console.WriteLine("Contact Existed");
+            else
+                Console.WriteLine("Contact NOT Existed");
+        }
+
         static void Main(string[] args)
         {
             //TestFind(4);
             //TestAddNew();
             //TestUpdate(2);
             //TestDelete(5);
-            TestGetAllContacts();
+            //TestGetAllContacts();
+            TestContactExist(3);
         }
     }
 }

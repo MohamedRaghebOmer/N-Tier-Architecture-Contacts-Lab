@@ -106,5 +106,10 @@ namespace Contacts.Business
         {
             return clsContactData.GetAllContacts();
         }
+
+        public static bool IsContactExist(int id)
+        {
+            return clsContactData.IsContactExist(id);
+        }
     }
 }

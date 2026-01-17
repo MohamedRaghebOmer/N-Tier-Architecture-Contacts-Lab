@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using Contacts.Data.Settings;
+using Microsoft.SqlServer.Server;
 
 namespace Contacts.Data
 {
@@ -93,13 +94,13 @@ namespace Contacts.Data
                 if (result != null)
                     id = Convert.ToInt32(result);
             }
-            catch (Exception) { } 
+            catch (Exception) { }
             finally
             {
                 if (connection != null && connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
-            
+
             return id;
         }
 
@@ -177,7 +178,7 @@ namespace Contacts.Data
                 if (connection != null && connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
-            
+
             return rowsAffected > 0;
         }
 
@@ -201,17 +202,49 @@ namespace Contacts.Data
                     dataTable.Load(reader);
                 }
             }
-            catch(Exception) { }
+            catch (Exception) { }
             finally
             {
                 if (reader != null && !reader.IsClosed)
                     reader.Close();
-                
-                if (connection!= null && connection.State ==  System.Data.ConnectionState.Open)
+
+                if (connection != null && connection.State == System.Data.ConnectionState.Open)
                     connection.Close();
             }
 
             return dataTable;
         }
+
+        public static bool IsContactExist(int id)
+        {
+            bool exist = false;
+            SqlConnection connection = null;
+            string query = @"SELECT 1
+                            FROM Contacts
+                            WHERE Contacts.ContactID = @id;";
+            try
+            {
+                connection = new SqlConnection(clsDataSettings.connectionString);
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+                
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                    exist = true;
+            }
+            catch (Exception) { }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+
+            return exist;
+        }
+
+
     }
 }

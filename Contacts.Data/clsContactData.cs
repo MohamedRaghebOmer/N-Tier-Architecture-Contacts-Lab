@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.SymbolStore;
+using System.Runtime.InteropServices;
 using Contacts.Data.Settings;
 
 namespace Contacts.Data
@@ -407,6 +408,37 @@ namespace Contacts.Data
             }
 
             return dt;
+        }
+
+        public static bool IsCountryExist(int id)
+        {
+            bool isExist = false;
+            SqlConnection connection = null;
+            string query = @"SELECT 1
+                            FROM Countries
+                            WHERE CountryID = @id;";
+
+            try
+            {
+                connection = new SqlConnection(clsDataSettings.connectionString);
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                object result = command.ExecuteScalar();
+                
+                if (result != null)
+                    isExist = true;
+            }
+            catch (Exception) { }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+
+            return isExist;
         }
     }
 }

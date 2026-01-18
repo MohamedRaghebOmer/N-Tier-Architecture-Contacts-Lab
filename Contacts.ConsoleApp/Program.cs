@@ -181,13 +181,23 @@ namespace Contacts.ConsoleApp
             }
         }
 
+        static void TestCountryExist(int id)
+        {
+            if (clsCountry.IsCountryExist(id))
+                Console.WriteLine("Country with id [" + id + "] exists");
+            else
+                Console.WriteLine("Country with id [" + id + "] NOT exist");
+        }
+
+
         static void Main(string[] arg)
         {
             //TestFind(3);
             //TestAddNew();
             //TestUpdate();
             //TestDelete(9);
-            TestGetAllCountries();
+            //TestGetAllCountries();
+            TestCountryExist(2);
         }
     }
 }

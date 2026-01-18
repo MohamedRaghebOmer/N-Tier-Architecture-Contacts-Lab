@@ -191,6 +191,11 @@ namespace Contacts.Business
         {
             return clsCountriesData.GetAllCountries();
         }
-    }
 
+        public static bool IsCountryExist(int id)
+        {
+            return clsCountriesData.IsCountryExist(id);
+        }
+    }
+    
 }

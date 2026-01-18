@@ -181,6 +181,11 @@ namespace Contacts.Business
             
             return false;
         }
+
+        public static bool DeleteCountry(int id)
+        {
+            return clsCountriesData.DeleteCountry(id);
+        }
     }
 
 }

@@ -348,5 +348,32 @@ namespace Contacts.Data
 
             return rowsAffected > 0;
         }
+    
+        public static bool DeleteCountry(int id)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = null;
+            string query = @"DELETE FROM Countries
+                            WHERE CountryID = @id;";
+
+            try
+            {
+                connection = new SqlConnection(clsDataSettings.connectionString);
+                connection.Open();
+                
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception) { }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+
+            return rowsAffected > 0;
+        }
     }
 }

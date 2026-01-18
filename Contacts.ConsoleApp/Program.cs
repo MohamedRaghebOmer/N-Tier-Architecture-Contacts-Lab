@@ -161,11 +161,20 @@ namespace Contacts.ConsoleApp
 
         }
 
+        static void TestDelete(int id)
+        {
+            if (clsCountry.DeleteCountry(id))
+                Console.WriteLine("Country with id [" + id + "] deleted successflly");
+            else
+                Console.WriteLine("Deletion failed");
+        }
+
         static void Main(string[] arg)
         {
             //TestFind(3);
             //TestAddNew();
-            TestUpdate();
+            //TestUpdate();
+            TestDelete(9);
         }
     }
 }

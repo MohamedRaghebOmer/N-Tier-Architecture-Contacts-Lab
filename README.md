@@ -1,6 +1,6 @@
 # 3-Tier Architecture Contacts Management Lab 🏗️
 
-A professional-grade demonstration of the **3-Tier Architecture** pattern using C# and .NET. This project serves as a technical laboratory for building decoupled, maintainable, and secure database-driven applications.
+A professional-grade demonstration of the **3-Tier Architecture** pattern using C# and .NET. This project serves as a technical laboratory for building decoupled, maintainable, and secure database-driven applications. 
 
 ## 🏛️ Architectural Design
 The solution is strictly divided into three distinct layers to ensure a professional separation of concerns:

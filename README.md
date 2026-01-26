@@ -1,37 +1,45 @@
-# Learn-Three-Tier-Architecture 🚀
+# 3-Tier Architecture Contacts Management Lab 🏗️
 
-A practical implementation of the Three-Tier Architecture pattern using C# and .NET. This project serves as a learning resource for structuring scalable and maintainable applications by separating concerns into distinct layers.
+A professional-grade demonstration of the **3-Tier Architecture** pattern using C# and .NET. This project serves as a technical laboratory for building decoupled, maintainable, and secure database-driven applications.
 
-## 🏗️ Project Structure
+## 🏛️ Architectural Design
+The solution is strictly divided into three distinct layers to ensure a professional separation of concerns:
 
-The solution is divided into three main layers:
+### 1. Presentation Layer (`Contacts.ConsoleApp`)
+- Responsible for handling user interactions and displaying information.
+- Communicates exclusively with the **Business Layer**.
 
-* **Contacts.ConsoleApp (Presentation Layer):** The user interface (CLI) that handles user input and displays information.
-* **Contacts.Business (Business Logic Layer):** Contains the core logic and validation rules. It acts as a bridge between the UI and the data.
-* **Contacts.Data (Data Access Layer):** Responsible for direct communication with the database (CRUD operations).
+### 2. Business Logic Layer (`Contacts.Business`)
+- Acts as a bridge between the UI and Data layers.
+- Contains core logic, data validation rules, and business objects (`clsContact`, `clsCountry`).
+- Ensures that no invalid data reaches the persistence layer.
 
-## 🛠️ Tech Stack
+### 3. Data Access Layer (`Contacts.Data`)
+- Dedicated to database communication and CRUD operations.
+- Implements secure **SQL Parameterized Queries** to prevent SQL Injection.
+- Handles direct interactions with SQL Server using **ADO.NET**.
 
-* **Language:** C#
-* **Framework:** .NET
-* **Database:** SQL Server (Database backup included as ContactsDB.bak).
+---
 
-## 🚀 Getting Started
+## 🛠️ Tech Stack & Patterns
+- **Language:** C# 10.0+
+- **Framework:** .NET Framework / .NET Core
+- **Database:** Microsoft SQL Server
+- **Architectural Pattern:** 3-Tier Design
+- **Data Access:** ADO.NET (Connected & Disconnected models)
 
-1. **Clone the repo:**
+## 🚀 Key Technical Features
+- **Data Integrity:** Strict validation within the Business Layer.
+- **Secure Persistence:** Fully parameterized queries for all database interactions.
+- **Relational Mapping:** Clean mapping between SQL tables and C# objects.
+- **Scalability:** The design allows for easy swapping of the UI (e.g., from Console to Web) without touching the Data or Business layers.
 
-```bash
-git clone https://github.com/MohamedRaghebOmer/Learn-Three-Tier-Architecture.git
-```
+## ⚙️ Getting Started
+1. **Database Setup:** Restore the provided `ContactsDB.bak` file to your local SQL Server instance.
+2. **Configuration:** Update the connection string in `Contacts.Data/clsDataAccessSettings.cs` to match your local environment.
+3. **Run:** Set `Contacts.ConsoleApp` as the startup project and run.
 
-2. **Database Setup:**
+---
 
-* Restore the `ContactsDB.bak` file in your SQL Server instance.
-
-3. **Configuration:**
-
-* Update the connection string in the `Contacts.Data` layer to match your local server settings.
-
-4. **Run:**
-
-* Set `Contacts.ConsoleApp` as the startup project and run the application.
+## ⚖️ License
+This project is licensed under the MIT License.
